@@ -113,8 +113,8 @@ implementation
 procedure Register;
 begin
   //Cria a palleta Proway com o compoente TIntegerEdit e TFloatEdit
-  RegisterComponents('Entra21', [TIntegerEdit]);
-  RegisterComponents('Entra21', [TFloatEdit]);
+  RegisterComponents('Proway', [TIntegerEdit]);
+  RegisterComponents('Proway', [TFloatEdit]);
 end;
 
 { TNumericEdit }
@@ -217,7 +217,7 @@ begin
        else
          Bias := 0;
 
-       if CharInSet(Key, [#8, DecimalSeparator, '0'..'9', '-']) then
+       if CharInSet(Key, [#8, FormatSettings.DecimalSeparator, '0'..'9', '-']) then
          begin
            if SelLength = Length(Text) then
              SetDecimals(FDecimals);
@@ -227,7 +227,7 @@ begin
              begin
                if (Key = #8) then
                  begin
-                  if (Text[SelStart] <> DecimalSeparator) then
+                  if (Text[SelStart] <> FormatSettings.DecimalSeparator) then
                     begin
                       AuxText := Text;
                       S := SelStart;
@@ -256,9 +256,9 @@ begin
              end
            else
              begin
-               if (Key = DecimalSeparator) then
+               if (Key = FormatSettings.DecimalSeparator) then
                  begin
-                    SelStart := pos(DecimalSeparator, Text);
+                    SelStart := pos(FormatSettings.DecimalSeparator, Text);
                     SelLength := 0;
                  end
                else
@@ -271,7 +271,7 @@ begin
                          Insert(Key, AuxText, length(AuxText) - FDecimals);
                          AuxText := TiraZerosaEsquerda(AuxText);
                          Text := AuxText;
-                         SelStart := pos(DecimalSeparator, AuxText) - 1;
+                         SelStart := pos(FormatSettings.DecimalSeparator, AuxText) - 1;
                          SelLength := 0;
                        end
                      else
@@ -298,7 +298,7 @@ begin
                        AuxText := Text;
                        S := SelStart;
                        delete(AuxText, S, 1);
-                       if  (Length(AuxText) > 0) and (AuxText[1] <> DecimalSeparator) then
+                       if  (Length(AuxText) > 0) and (AuxText[1] <> FormatSettings.DecimalSeparator) then
                            begin
                              Text := AuxText;
                              SelStart := S - 1;
@@ -349,8 +349,8 @@ var
 begin
   //Primeiro retira todos os separadores de milhar, porque a funcão StrToFloatDef não aceita.
   Aux := Text;
-  while (Pos(ThousandSeparator, Aux) <> 0) do
-    delete(Aux, Pos(ThousandSeparator, Aux), 1);
+  while (Pos(FormatSettings.ThousandSeparator, Aux) <> 0) do
+    delete(Aux, Pos(FormatSettings.ThousandSeparator, Aux), 1);
 
   //Tentar conver o texto sem separador de milhar para Double, se não conseguir, retorna zero.
   Result := StrToFloatDef(Aux, 0);
@@ -367,7 +367,7 @@ begin
   //Retorna o texto enviado por parametro sem zeros a esquedar.
   Result := Valor;
   while (   (Result[1] = '0')
-         or (Result[1] = ThousandSeparator))
+         or (Result[1] = FormatSettings.ThousandSeparator))
     and (Length(Result) > FDecimals+2) do
     Delete(Result, 1, 1);
 end;
