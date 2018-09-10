@@ -1,0 +1,48 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{BAE4D3D8-ABD4-4CCD-ADC3-5BA77B371A6C}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="Entra21.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\..\..\..\Projetos\Consulting\Entra21\2018\Automobilismo\Automobilismo.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="Entra21">
+			<MSBuild Projects="Entra21.dproj"/>
+		</Target>
+		<Target Name="Entra21:Clean">
+			<MSBuild Targets="Clean" Projects="Entra21.dproj"/>
+		</Target>
+		<Target Name="Entra21:Make">
+			<MSBuild Targets="Make" Projects="Entra21.dproj"/>
+		</Target>
+		<Target Name="Automobilismo">
+			<MSBuild Projects="..\..\..\..\Projetos\Consulting\Entra21\2018\Automobilismo\Automobilismo.dproj"/>
+		</Target>
+		<Target Name="Automobilismo:Clean">
+			<MSBuild Targets="Clean" Projects="..\..\..\..\Projetos\Consulting\Entra21\2018\Automobilismo\Automobilismo.dproj"/>
+		</Target>
+		<Target Name="Automobilismo:Make">
+			<MSBuild Targets="Make" Projects="..\..\..\..\Projetos\Consulting\Entra21\2018\Automobilismo\Automobilismo.dproj"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="Entra21;Automobilismo"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="Entra21:Clean;Automobilismo:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="Entra21:Make;Automobilismo:Make"/>
+		</Target>
+		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+	</Project>

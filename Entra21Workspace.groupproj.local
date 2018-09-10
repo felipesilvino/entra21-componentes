@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017/03/19 09:42:37.221.groupproj,C:\Users\Felipe\Documents\RAD Studio\Projects\ProjectGroup1.groupproj=C:\Users\Felipe\Documents\RAD Studio\Projects\Componentes\PwCtrlsRoot.groupproj</Transaction>
+    <Transaction>2018/09/09 22:09:05.408.groupproj,C:\Users\Felipe\Documents\RAD Studio\Projects\Componentes\PwCtrlsRoot.groupproj=C:\Users\Felipe\Documents\RAD Studio\Projects\Componentes\Entra21Workspace.groupproj</Transaction>
+  </Transactions>
+	<Default.Personality>
+		<Projects ActiveProject="Automobilismo.exe"/>
+	</Default.Personality>
+</BorlandProject>
